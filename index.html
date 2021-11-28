@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/22e14ec2bc.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Weather-app</title>
+  </head>
+  <body>
+    <header class="city-search">
+      <form>
+        <input
+          type="text"
+          class="city-search"
+          name="city"
+          placeholder="Tap a city name"
+        /><i class="fas fa-search"></i>
+      </form>
+    </header>
+    <div class="section-wrapper">
+      <div class="section left-section day-weatcher">
+        <div class="left-section-city-info">
+          <h1 class="left-section-city">City Name</h1>
+          <p class="left-section-date">00.00.00</p>
+          <p class="week-day-name time-zone">Time-Zone</p>
+        </div>
+        <div class="left-section-icon">
+          <img src="img-svg/02d.svg" />
+        </div>
+        <div class="left-section-info left-section-icon">
+          <p class="weather-description">Sunny</p>
+          <p class="temperatur">14 &#176; <span class="temp-info">C</span></p>
+          <p class="temperature-feels">
+            Feels-like
+            <span class="temperature-feels-like-info">2 &#176;C</span>
+          </p>
+        </div>
+        <div class="day-weather-info">
+          <div class="wind flex">
+            <p>Wind</p>
+            <i class="fas fa-wind"></i>
+            <p class="day-wether-wind-info">14 <span>km/h</span></p>
+          </div>
+          <div class="pressure flex">
+            <p>Pressure</p>
+            <i class="fas fa-arrow-up"><i class="fas fa-arrow-down"></i></i>
+            <p class="day-weather-pressure-info">1000 <span>hPa</span></p>
+          </div>
+          <div class="humidity flex">
+            <p>Humidity</p>
+            <i class="fas fa-tint"></i>
+            <p class="day-weather-humidity-info">40 <span>%</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="section right-section week-weatcher"></div>
+    </div>
+    <script src="http://cdn.date-fns.org/v1.9.0/date_fns.min.js"></script>
+
+    <script src="app.js"></script>
+    <script src="ui.js"></script>
+  </body>
+</html>
