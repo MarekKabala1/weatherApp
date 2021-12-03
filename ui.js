@@ -108,15 +108,14 @@ const updateUi = async (data) => {
   `<p class="day">${dateFns.format(data.daily[6].dt * 1000,"dddd")}</p>
   <div><img src="img.png/${data.daily[6].weather[0].icon}.png" alt="${data.daily[6].weather[0].main}"></div>
   <p class="weekTemp">High ${data.daily[6].temp.max.toFixed( 1)}&#176;Low ${data.daily[6].temp.min.toFixed(1)}&#176 C</p>`;
-
-  const getAtime = () => {
-    const dt = document.querySelector(".left-section-date");
-    const date = new Date();
-    const time = date.toDateString();
-    dt.innerHTML = time;
-  };
-  getAtime();
 };
+const getAtime = () => {
+  const dt = document.querySelector(".left-section-date");
+  const date = new Date();
+  const time = date.toDateString();
+  dt.innerHTML = time;
+};
+getAtime();
 
 // const setDay = () => {
 //   const weekday = [
