@@ -60,54 +60,66 @@ const divSix = document.querySelector("#day_six");
 console.log();
 
 const updateUi = async (data) => {
-  //current weather
-  let icon = data.current.weather[0].icon;
-  timeZone.innerHTML = data.timezone;
-  temperatur.innerHTML = `${data.current.temp}&#176; C`;
-  feelsLikeTemp.innerHTML = `(${data.current.feels_like})&#176; C`;
-  mainImg.innerHTML = `<img src="img-svg/${icon}.svg">`;
-  weatherInfo.innerHTML = data.current.weather[0].description.toUpperCase();
-  windInfo.innerHTML = `${data.current.wind_speed} km/h`;
-  pressure.innerHTML = `${data.current.pressure} hPa`;
-  humidity.innerHTML = `${data.current.humidity} %`;
-  // console.log(humidity, pressure);
-  // week weather output to a DOM
-  // day one
-  // prettier-ignore
-  divOne.innerHTML =
-  `<p class="day">${dateFns.format(data.daily[1].dt * 1000, "dddd")}</p>
-  <div><img src="img.png/${data.daily[1].weather[0].icon}.png" alt="${data.daily[1].weather[0].main}"></div>
-  <p class="weekTemp">High ${data.daily[1].temp.max.toFixed(1)}&#176;Low ${data.daily[1].temp.min.toFixed(1)}&#176 C</p>`;
-  //day two
-  // prettier-ignore
-  divTwo.innerHTML =
-  `<p class="day">${dateFns.format(data.daily[2].dt * 1000,"dddd")}</p>
-  <div><img src="img.png/${data.daily[2].weather[0].icon}.png" alt="${data.daily[2].weather[0].main}"></div>
-  <p class="weekTemp">High ${data.daily[2].temp.max.toFixed( 1)}&#176;Low ${data.daily[2].temp.min.toFixed(1)}&#176 C</p>`;
-  //day three
-  // prettier-ignore
-  divThree.innerHTML =
-  `<p class="day">${dateFns.format(data.daily[3].dt * 1000,"dddd")}</p>
-  <div><img src="img.png/${data.daily[3].weather[0].icon}.png" alt="${data.daily[3].weather[0].main}"></div>
-  <p class="weekTemp">High ${data.daily[3].temp.max.toFixed( 1)}&#176;Low ${data.daily[3].temp.min.toFixed(1)}&#176 C</p>`;
-  //day four
-  // prettier-ignore
-  divFour.innerHTML =
-  `<p class="day">${dateFns.format(data.daily[4].dt * 1000,"dddd")}</p>
-  <div><img src="img.png/${data.daily[4].weather[0].icon}.png" alt="${data.daily[4].weather[0].main}"></div>
-  <p class="weekTemp">High ${data.daily[4].temp.max.toFixed( 1)}&#176;Low ${data.daily[4].temp.min.toFixed(1)}&#176 C</p>`;
-  //day five
-  // prettier-ignore
-  divFive.innerHTML =
-  `<p class="day">${dateFns.format(data.daily[5].dt * 1000,"dddd")}</p>
-  <div><img src="img.png/${data.daily[5].weather[0].icon}.png" alt="${data.daily[5].weather[0].main}"></div>
-  <p class="weekTemp">High ${data.daily[5].temp.max.toFixed( 1)}&#176;Low ${data.daily[5].temp.min.toFixed(1)}&#176 C</p>`;
-  //day six
-  // prettier-ignore
-  divSix.innerHTML =
-  `<p class="day">${dateFns.format(data.daily[6].dt * 1000,"dddd")}</p>
-  <div><img src="img.png/${data.daily[6].weather[0].icon}.png" alt="${data.daily[6].weather[0].main}"></div>
-  <p class="weekTemp">High ${data.daily[6].temp.max.toFixed( 1)}&#176;Low ${data.daily[6].temp.min.toFixed(1)}&#176 C</p>`;
+  const setDay = () => {
+    const weekday = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    //current weather
+    let icon = data.current.weather[0].icon;
+    timeZone.innerHTML = data.timezone;
+    temperatur.innerHTML = `${data.current.temp}&#176; C`;
+    feelsLikeTemp.innerHTML = `(${data.current.feels_like})&#176; C`;
+    mainImg.innerHTML = `<img src="img-svg/${icon}.svg">`;
+    weatherInfo.innerHTML = data.current.weather[0].description.toUpperCase();
+    windInfo.innerHTML = `${data.current.wind_speed} km/h`;
+    pressure.innerHTML = `${data.current.pressure} hPa`;
+    humidity.innerHTML = `${data.current.humidity} %`;
+    // console.log(humidity, pressure);
+    // week weather output to a DOM
+    // day one
+    // prettier-ignore
+    divOne.innerHTML =
+    `<p class="day">${weekday[new Date(data.daily[1].dt * 1000).getDay()]}</p>
+    <div><img src="img.png/${data.daily[1].weather[0].icon}.png" alt="${data.daily[1].weather[0].main}"></div>
+    <p class="weekTemp">High ${data.daily[1].temp.max.toFixed(1)}&#176;Low ${data.daily[1].temp.min.toFixed(1)}&#176 C</p>`;
+    //day two
+    // prettier-ignore
+    divTwo.innerHTML =
+    `<p class="day">${weekday[new Date(data.daily[2].dt * 1000).getDay()]}</p>
+    <div><img src="img.png/${data.daily[2].weather[0].icon}.png" alt="${data.daily[2].weather[0].main}"></div>
+    <p class="weekTemp">High ${data.daily[2].temp.max.toFixed( 1)}&#176;Low ${data.daily[2].temp.min.toFixed(1)}&#176 C</p>`;
+    //day three
+    // prettier-ignore
+    divThree.innerHTML =
+    `<p class="day">${weekday[new Date(data.daily[3].dt * 1000).getDay()]}</p>
+    <div><img src="img.png/${data.daily[3].weather[0].icon}.png" alt="${data.daily[3].weather[0].main}"></div>
+    <p class="weekTemp">High ${data.daily[3].temp.max.toFixed( 1)}&#176;Low ${data.daily[3].temp.min.toFixed(1)}&#176 C</p>`;
+    //day four
+    // prettier-ignore
+    divFour.innerHTML =
+    `<p class="day">${weekday[new Date(data.daily[4].dt * 1000).getDay()]}</p>
+    <div><img src="img.png/${data.daily[4].weather[0].icon}.png" alt="${data.daily[4].weather[0].main}"></div>
+    <p class="weekTemp">High ${data.daily[4].temp.max.toFixed( 1)}&#176;Low ${data.daily[4].temp.min.toFixed(1)}&#176 C</p>`;
+    //day five
+    // prettier-ignore
+    divFive.innerHTML =
+    `<p class="day">${weekday[new Date(data.daily[5].dt * 1000).getDay()]}</p>
+    <div><img src="img.png/${data.daily[5].weather[0].icon}.png" alt="${data.daily[5].weather[0].main}"></div>
+    <p class="weekTemp">High ${data.daily[5].temp.max.toFixed( 1)}&#176;Low ${data.daily[5].temp.min.toFixed(1)}&#176 C</p>`;
+    //day six
+    // prettier-ignore
+    divSix.innerHTML =
+    `<p class="day">${weekday[new Date(data.daily[6].dt * 1000).getDay()]}</p>
+    <div><img src="img.png/${data.daily[6].weather[0].icon}.png" alt="${data.daily[6].weather[0].main}"></div>
+    <p class="weekTemp">High ${data.daily[6].temp.max.toFixed( 1)}&#176;Low ${data.daily[6].temp.min.toFixed(1)}&#176 C</p>`;
+  };
+  setDay();
 };
 const getAtime = () => {
   const dt = document.querySelector(".left-section-date");
@@ -116,17 +128,6 @@ const getAtime = () => {
   dt.innerHTML = time;
 };
 getAtime();
-
-// const setDay = () => {
-//   const weekday = [
-//     "Sunday",
-//     "Monday",
-//     "Tuesday",
-//     "Wednesday",
-//     "Thursday",
-//     "Friday",
-//     "Saturday",
-//   ];
 
 //   const dt = data.daily[0].dt;
 //   const milliseconds = dt * 1000;
@@ -137,4 +138,3 @@ getAtime();
 //   // console.log(humanDateFormat, day);
 //   // dayOneDay.innerHTML = weekday[new Date(data.daily[0].dt * 1000).getDay()];
 // };
-// setDay();
