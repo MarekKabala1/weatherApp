@@ -60,8 +60,6 @@ const divSix = document.querySelector("#day_six");
 console.log();
 
 const updateUi = async (data) => {
-  import format from "date-fns/format";
-  var format = require("date-fns/format");
   //current weather
   let icon = data.current.weather[0].icon;
   timeZone.innerHTML = data.timezone;
