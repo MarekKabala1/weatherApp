@@ -1,4 +1,4 @@
-// import { format, subDays } from "date-fns";
+//create 6 divs elements
 const createElement = () => {
   const section = document.querySelector(".right-section");
 
@@ -60,6 +60,8 @@ const divSix = document.querySelector("#day_six");
 console.log();
 
 const updateUi = async (data) => {
+  import format from "date-fns/format";
+  var format = require("date-fns/format");
   //current weather
   let icon = data.current.weather[0].icon;
   timeZone.innerHTML = data.timezone;
@@ -71,7 +73,7 @@ const updateUi = async (data) => {
   pressure.innerHTML = `${data.current.pressure} hPa`;
   humidity.innerHTML = `${data.current.humidity} %`;
   // console.log(humidity, pressure);
-  // week weather
+  // week weather output to a DOM
   // day one
   // prettier-ignore
   divOne.innerHTML =
@@ -108,11 +110,6 @@ const updateUi = async (data) => {
   `<p class="day">${dateFns.format(data.daily[6].dt * 1000,"dddd")}</p>
   <div><img src="img.png/${data.daily[6].weather[0].icon}.png" alt="${data.daily[6].weather[0].main}"></div>
   <p class="weekTemp">High ${data.daily[6].temp.max.toFixed( 1)}&#176;Low ${data.daily[6].temp.min.toFixed(1)}&#176 C</p>`;
-  // dayOnetemp.innerHTML = `High ${data.daily[1].temp.max.toFixed(
-  //   1
-  // )}&#176; Low ${data.daily[1].temp.min.toFixed(1)}&#176 C`;
-  // dayOneDay.innerHTML = dateFns.format(data.daily[1].dt * 1000, "dddd");
-  // dayOneImg.innerHTML = `<img src="img.png/${data.daily[1].weather[0].icon}.png" alt="${data.daily[1].weather[0].main}">`;
 
   const getAtime = () => {
     const dt = document.querySelector(".left-section-date");
