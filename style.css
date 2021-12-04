@@ -196,6 +196,7 @@ form {
     gap: 0.3rem;
     width: auto;
     line-height: 2rem;
+    padding-inline: 0.1rem;
   }
   .left-section-city-info {
     grid-area: cityInfo;
@@ -272,7 +273,10 @@ form {
     font-size: 0.7rem;
   }
 }
-@media screen and (max-width: 470px) {
+@media screen and (max-width: 410px) {
+  .section-wrapper {
+    position: relative;
+  }
   .left-section {
     grid-template-areas:
       "cityInfo icon  "
@@ -280,13 +284,16 @@ form {
       "weatherInfo weatherInfo";
     margin: 0;
     padding: 0.3rem;
+    max-height: 100%;
   }
   .section {
     width: 90%;
   }
   .right-section {
+    position: relative;
     overflow-y: scroll;
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
+    padding-left: 10rem;
   }
   .day-weather-info {
     grid-area: weatherInfo;
