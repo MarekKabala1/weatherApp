@@ -282,6 +282,7 @@ form {
     gap: 1rem;
   }
   .left-section {
+    display: grid;
     grid-template-areas:
       "cityInfo cityInfo "
       "icon icon"
@@ -289,6 +290,7 @@ form {
       "weatherInfo weatherInfo";
     margin: 0;
     width: auto;
+    height: auto;
   }
 
   .right-section {
@@ -305,6 +307,7 @@ form {
     align-items: center;
     padding-left: 0;
     margin: 0;
+    padding: 0;
     border-left: none;
   }
 }
