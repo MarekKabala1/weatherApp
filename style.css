@@ -180,7 +180,7 @@ form {
   }
 
   .section {
-    display: inline-block;
+    /* display: inline-block; */
     max-width: 100%;
     /* height: 100vh; */
     /* min-width: 20rem; */
@@ -194,8 +194,8 @@ form {
     gap: 0.3rem;
     max-width: 90vw;
     width: auto;
-    line-height: 2rem;
-    padding: 1rem;
+    /* line-height: 2rem; */
+    padding: 0 1rem;
   }
   .left-section-city-info {
     grid-area: cityInfo;
@@ -265,6 +265,7 @@ form {
     /* max-width: 9rem; */
     max-height: 9rem;
     background: hsl(182, 60%, 80%, 0.2);
+    border: 0.5px solid var(--primaryColor);
   }
   .day {
     font-size: 0.8rem;
