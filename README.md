@@ -1,5 +1,5 @@
 # weatherApp
 
-##Live
+## Live
 
 https://marekkabala1.github.io/weatherApp/
