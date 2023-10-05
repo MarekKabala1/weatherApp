@@ -41,7 +41,6 @@ createElement();
 const timeZone = document.querySelector('.time-zone');
 const temperatur = document.querySelector('.temperatur');
 const feelsLikeTemp = document.querySelector('.temperature-feels-like-info');
-const cityValue = document.querySelector('.left-section-city');
 const mainImg = document.querySelector('.left-section-icon');
 const weatherInfo = document.querySelector('.weather-description');
 const windInfo = document.querySelector('.day-wether-wind-info');
@@ -81,7 +80,7 @@ const updateUi = async (data) => {
 		windInfo.innerHTML = `${data.current.wind_speed} km/h`;
 		pressure.innerHTML = `${data.current.pressure} hPa`;
 		humidity.innerHTML = `${data.current.humidity} %`;
-		// console.log(humidity, pressure);
+
 		// week weather output to a DOM
 		// day one
 		// prettier-ignore

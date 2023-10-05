@@ -1,53 +1,69 @@
 const search = document.querySelector('form');
+const cityValue = document.querySelector('.left-section-city');
 
-//search a city
+// Func to fetch weather data by city name
+const fetchWeatherByCity = async (city) => {
+	const apiKey = '29c2b887fc301c4cbe23341fe49f9261';
+	const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+	const response = await fetch(apiUrl);
+	const data = await response.json();
+	cityValue.innerHTML = data.name;
+	return data;
+};
+
+// Func to fetch weather data by latitude and longitude
+const fetchWeatherByCoords = async (lat, lon) => {
+	const apiKey = '29c2b887fc301c4cbe23341fe49f9261';
+	const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+	const response = await fetch(apiUrl);
+	const data = await response.json();
+	return data;
+};
+
 search.addEventListener('submit', async (e) => {
-	//prevent default action
 	e.preventDefault();
 
-	//get city value
+	// Get city value from the form input
 	const city = search.city.value.trim();
 	search.reset();
 
-	localStorage.setItem('city', JSON.stringify(city));
+	// Store the city in local storage
+	localStorage.setItem('city', city);
 
-	//Function to get a city from local storage
+	// Fetch weather data by city name
+	const cityData = await fetchWeatherByCity(city);
 
-	const getCity = async (city) => {
-		const key = '29c2b887fc301c4cbe23341fe49f9261';
-		const base = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}&units=metric`;
-		const response = await fetch(base);
-		const data = await response.json();
-		cityValue.innerHTML = data.city.name;
-		console.log(data.city.name);
+	if (cityData.coord) {
+		//Distructure lat,lon from coord to  Get lat and lon
+		const { lat, lon } = cityData.coord;
 
-		return data.city;
-	};
+		// Fetch weather data by lat and lon
+		const weatherData = await fetchWeatherByCoords(lat, lon);
 
-	getCity(city).then((data) => {
-		// console.log(data.coord.lat, data.coord.lon, data, city);
-		return data;
-	});
+		// Update the UI with the weather data
+		updateUi(weatherData);
+	}
+});
 
-	//fetch weather using returned data from getCity()
-	const getWeather = async (lat, lon) => {
-		const key = '29c2b887fc301c4cbe23341fe49f9261';
-		const base = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${key}&units=metric`;
-		const response = await fetch(base);
-		const data = await response.json();
-		// console.log(data);
-		return data;
-	};
-	getCity(city)
-		.then((data) => {
-			return (lat = data.coord.lat), (lon = data.coord.lon);
-			// return data.coord;
+// Function to get the city from local storage
+const getCityFromLocalStorage = () => {
+	return localStorage.getItem('city');
+};
+
+// Check if a city is  in local storage and fetch weather data
+const storedCity = getCityFromLocalStorage();
+if (storedCity) {
+	fetchWeatherByCity(storedCity)
+		.then((cityData) => {
+			if (cityData.coord) {
+				const { lat, lon } = cityData.coord;
+				return fetchWeatherByCoords(lat, lon);
+			} else {
+				throw new Error('City not found');
+			}
 		})
-		.then(() => {
-			return getWeather(lat, lon);
-		})
-		.then((data) => {
-			updateUi(data);
+		.then((weatherData) => {
+			updateUi(weatherData);
 		})
 		.catch((err) => console.log(err));
-});
+}
