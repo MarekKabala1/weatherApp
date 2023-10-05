@@ -69,7 +69,7 @@ const updateUi = async (data) => {
 			'Friday',
 			'Saturday',
 		];
-		console.log(data.daily[1].weather[0].icon);
+
 		//current weather
 		let icon = data.current.weather[0].icon;
 		timeZone.innerHTML = data.timezone;
